@@ -1,0 +1,47 @@
+﻿<Window x:Class="PassportDatesCheck.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PassportDatesCheck"
+        mc:Ignorable="d"
+        Title="Перевірка паспорту" Height="225" Width="260" ResizeMode="NoResize" Topmost="True" FontSize="22"
+        FocusManager.FocusedElement="{Binding ElementName=MainTextBox}"
+        Deactivated="Window_Deactivated"
+        Background="#FFCCD5F0"
+        >
+    <Grid Margin="10,5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="120"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal">
+            <TextBlock Text="{Binding DateFirstPart}" FontWeight="Bold" VerticalAlignment="Center"/>
+
+            <TextBox MaxLength="2" Width="30" x:Name="MainTextBox" VerticalAlignment="Center"
+                     PreviewTextInput="OnlyNumber_Input" PreviewKeyDown="NoSpaces_Input" Text="{Binding Path=DateSecondPart, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}" FontWeight="Bold"/>
+            <TextBlock VerticalAlignment="Center">р.н.</TextBlock>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2">
+            <ItemsControl ItemsSource="{Binding Path=Turns}">
+                <ItemsControl.ItemTemplate>
+                    <HierarchicalDataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Description}"></TextBlock>
+                            <TextBlock Text="{Binding Year}" FontWeight="{Binding FontWeihht}"></TextBlock>
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
+
+
+
+
+    </Grid>
+</Window>
